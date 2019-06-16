@@ -1,0 +1,34 @@
+﻿@model TodoViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div>
+	<div>
+		<table>
+			<tr>
+				<td>IsDue</td>
+				<td>Name</td>
+				<td>Due At</td>
+			</tr>
+			<tr>
+				@foreach (var item in Model.item)
+				{
+				<td>
+					<form asp-action="MarkDone" method="post">
+						<input type="checkbox" class="done-checkbox" />
+						<input type="hidden" value="@item.ID" name="id" />
+					</form>
+				</td>
+					<td>@item.Name</td>
+					<td>@item.DueAt</td>
+				}
+			</tr>
+		</table>
+	</div>
+	<div>
+		@await Html.PartialAsync("PartialItem", new TodoItem())
+	</div>
+
+</div>
+
